@@ -1,6 +1,7 @@
 import { link } from '../mixins/link';
 import { VantComponent } from '../common/component';
 import { Weapp } from 'definitions/weapp';
+import utils from '../wxs-ts/utils';
 
 VantComponent({
   classes: [
@@ -31,6 +32,21 @@ VantComponent({
       type: Boolean,
       value: true
     }
+  },
+
+
+  created() {
+    let {
+      size,
+      center,
+      required,
+      border,
+      isLink,
+      clickable
+    } = this.data
+    this.setData({
+      bemWrap: utils.bem('cell', [size, { center, required, borderless: !border, clickable: isLink || clickable }])
+    })
   },
 
   methods: {

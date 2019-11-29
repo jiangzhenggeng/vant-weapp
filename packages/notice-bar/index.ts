@@ -1,5 +1,6 @@
 import { VantComponent } from '../common/component';
 import { Weapp } from 'definitions/weapp';
+import utils from '../wxs-ts/utils';
 
 const FONT_COLOR = '#ed6a0c';
 const BG_COLOR = '#fffbe8';
@@ -64,6 +65,15 @@ VantComponent({
       duration: 0,
       timingFunction: 'linear'
     });
+
+    let {
+      mode,
+      wrapable
+    } = this.data
+    this.setData({
+      bemWrap: utils.bem('notice-bar', { withicon: mode, wrapable })
+    })
+
   },
 
   destroyed() {

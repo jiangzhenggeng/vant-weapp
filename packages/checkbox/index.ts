@@ -1,4 +1,5 @@
 import { VantComponent } from '../common/component';
+import utils from '../wxs-ts/utils';
 
 function emit(target: WechatMiniprogram.Component.TrivialInstance, value: boolean | any[]) {
   target.$emit('input', value);
@@ -32,6 +33,19 @@ VantComponent({
       type: String,
       value: 'round'
     }
+  },
+
+  created() {
+    let {
+      shape,
+      value,
+      labelPosition,
+      disabled
+    } = this.data
+    this.setData({
+      bemIcon: utils.bem('checkbox__icon', [shape, { disabled, checked: value }]),
+      bemLabel: utils.bem('checkbox__label', [labelPosition, { disabled }])
+    })
   },
 
   methods: {

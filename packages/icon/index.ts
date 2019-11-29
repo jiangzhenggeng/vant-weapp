@@ -1,4 +1,5 @@
 import { VantComponent } from '../common/component';
+import utils from '../wxs-ts/utils';
 
 VantComponent({
   props: {
@@ -11,6 +12,12 @@ VantComponent({
       type: String,
       value: 'van-icon'
     }
+  },
+
+  created() {
+    this.setData({
+      isSrc: utils.isSrc(this.data.name)
+    })
   },
 
   methods: {

@@ -4,6 +4,7 @@ const less = require('gulp-less');
 const insert = require('gulp-insert');
 const rename = require('gulp-rename');
 const postcss = require('gulp-postcss');
+const px2rpx = require('gulp-px2rpx');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
@@ -24,6 +25,11 @@ const lessCompiler = dist =>
       .src(`${src}/**/*.less`)
       .pipe(less())
       .pipe(postcss())
+      .pipe(px2rpx({
+        screenWidth: 320, // 设计稿屏幕, 默认750
+        wxappScreenWidth: 750, // 微信小程序屏幕, 默认750
+        remPrecision: 6 // 小数精度, 默认6
+      }))
       .pipe(
         insert.transform((contents, file) => {
           if (!file.path.includes('packages' + path.sep + 'common')) {

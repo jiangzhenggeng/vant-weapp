@@ -1,6 +1,7 @@
 import { VantComponent } from '../common/component';
 import { button } from '../mixins/button';
 import { openType } from '../mixins/open-type';
+import utils from '../wxs-ts/utils';
 
 VantComponent({
   mixins: [button, openType],
@@ -30,6 +31,23 @@ VantComponent({
       type: String,
       value: '20px'
     }
+  },
+
+  created() {
+    let {
+      type,
+      size,
+      block,
+      round,
+      plain,
+      square,
+      loading,
+      disabled,
+      hairline
+    } = this.data
+    this.setData({
+      bemWrap: utils.bem('button', [type, size, { block, round, plain, square, loading, disabled, hairline, unclickable: disabled || loading }])
+    })
   },
 
   methods: {
