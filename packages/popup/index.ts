@@ -1,6 +1,7 @@
 import { VantComponent } from '../common/component';
 import { transition } from '../mixins/transition';
 import { safeArea } from '../mixins/safe-area';
+import utils from '../wxs-ts/utils';
 
 VantComponent({
   classes: [
@@ -41,6 +42,15 @@ VantComponent({
   },
 
   created() {
+    let {
+      position,
+      isIPhoneX,
+      safeAreaInsetBottom
+    } = this.data
+
+    this.setData({
+      bemWrap: utils.bem('popup', [position, { safe: isIPhoneX && safeAreaInsetBottom }])
+    })
     this.observeClass();
   },
 
