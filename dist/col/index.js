@@ -1,4 +1,5 @@
 import { VantComponent } from '../common/component';
+import utils from '../wxs-ts/utils';
 VantComponent({
     relation: {
         name: 'row',
@@ -10,6 +11,11 @@ VantComponent({
     },
     data: {
         style: ''
+    },
+    created() {
+        this.setData({
+            bem: utils.bem('col', [this.data.span])
+        });
     },
     methods: {
         setGutter(gutter) {

@@ -1,5 +1,6 @@
 import { VantComponent } from '../common/component';
 import { getSystemInfoSync } from '../common/utils';
+import utils from '../wxs-ts/utils';
 VantComponent({
     field: true,
     classes: ['input-class', 'right-icon-class'],
@@ -69,6 +70,17 @@ VantComponent({
     data: {
         focused: false,
         system: getSystemInfoSync().system.split(' ').shift().toLowerCase()
+    },
+    created() {
+        let { type, system, inputAlign, disabled, errorMessageAlign, error } = this.data;
+        this.setData({
+            bemWrap: utils.bem('field__body', [type, system]),
+            bemTextarea: utils.bem('field__input', [inputAlign, type, { disabled, error }]),
+            bemPlaceholder: utils.bem('field__placeholder', { error }),
+            bemInput: utils.bem('field__input', [inputAlign, { disabled, error }]),
+            bemInputPlaceholder: utils.bem('field__placeholder', { error }),
+            bemMessage: utils.bem('field__error', [errorMessageAlign, { disabled, error }])
+        });
     },
     methods: {
         onInput(event) {
