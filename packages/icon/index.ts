@@ -7,6 +7,7 @@ VantComponent({
     name: String,
     size: String,
     color: String,
+    isSrc: Boolean,
     customStyle: String,
     classPrefix: {
       type: String,
@@ -16,7 +17,7 @@ VantComponent({
 
   created() {
     this.setData({
-      isSrc: utils.isSrc(this.data.name)
+      isSrc: this.data.isSrc || utils.isSrc(this.data.name)
     })
   },
 

@@ -16,7 +16,7 @@ VantComponent({
       this.parent = target;
     },
     unlinked() {
-      this.parent = null;
+      // this.parent = null;
     }
   },
 
@@ -24,6 +24,7 @@ VantComponent({
 
   props: {
     value: Boolean,
+    name: null,
     disabled: Boolean,
     useIconSlot: Boolean,
     checkedColor: String,
